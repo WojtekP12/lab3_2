@@ -30,7 +30,6 @@ public class NewsLoaderTest
         incomingNews.add(new IncomingInfo("NoneSub1",SubsciptionType.NONE));
         incomingNews.add(new IncomingInfo("NoneSub2",SubsciptionType.NONE));
 
-
         configurationLoader = Mockito.mock(ConfigurationLoader.class);
         Mockito.when(configurationLoader.loadConfiguration()).thenReturn(new Configuration());
         PowerMockito.mockStatic(ConfigurationLoader.class);
@@ -53,5 +52,13 @@ public class NewsLoaderTest
         assertThat(pn.getPublicContent().size(),is(2));
     }
 
+    @Test
+    public void SubContentTest()
+    {
+        Mockito.when(newsReader.read()).thenReturn(incomingNews);
 
+        PublishableNews pn = newsLoader.loadNews();
+
+        assertThat(pn.getPublicContent().size(),is(1));
+    }
 }
