@@ -61,4 +61,13 @@ public class NewsLoaderTest
 
         assertThat(pn.getPublicContent().size(),is(1));
     }
+
+    @Test
+    public void BehaviourTest()
+    {
+        newsLoader.loadNews();
+        Mockito.verify(configurationLoader,Mockito.times(1)).loadConfiguration();
+        Mockito.verify(newsReader,Mockito.times(1)).read();
+    }
+
 }
