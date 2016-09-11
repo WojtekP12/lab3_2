@@ -2,17 +2,20 @@ import edu.iis.mto.staticmock.*;
 import edu.iis.mto.staticmock.reader.NewsReader;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.powermock.api.mockito.PowerMockito;
-
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
 import static org.hamcrest.Matchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * Created by wojciech.pelka on 2016-04-19.
  */
-
+@RunWith(PowerMockRunner.class)
+@PrepareForTest({ ConfigurationLoader.class, NewsReaderFactory.class })
 public class NewsLoaderTest
 {
     ConfigurationLoader configurationLoader;
@@ -59,7 +62,7 @@ public class NewsLoaderTest
 
         PublishableNews pn = newsLoader.loadNews();
 
-        assertThat(pn.getPublicContent().size(),is(1));
+        assertThat(pn.getSubscribentContent().size(),is(1));
     }
 
     @Test
